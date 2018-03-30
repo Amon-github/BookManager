@@ -11,6 +11,11 @@ public class BookType {
 	
 	
 	
+	public BookType(String typeName) {
+		super();
+		this.typeName = typeName;
+	}
+
 	public BookType(String typeName, String typeDesc) {
 		super();
 		this.typeName = typeName;

@@ -75,6 +75,13 @@ public class HomeView extends JFrame {
 		mnNewMenu_1.add(menuItem);
 		
 		JMenuItem menuItem_1 = new JMenuItem("\u56FE\u4E66\u7C7B\u522B\u7EF4\u62A4");
+		menuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TypeManagerIntFrm tpMage=new TypeManagerIntFrm();
+				tpMage.setVisible(true);
+				table.add(tpMage);
+			}
+		});
 		mnNewMenu_1.add(menuItem_1);
 		
 		JMenu menu_1 = new JMenu("\u56FE\u4E66\u7BA1\u7406");

@@ -21,6 +21,7 @@ import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 /**
@@ -132,6 +133,8 @@ public class BookTypeAdd extends JInternalFrame {
 		String typeDesc=bookTypeDescTar.getText();
 		BookType bookType=new BookType(typeTxt,typeDesc);
 		BookTypeDao bookTypeDao=new BookTypeDao();
+		Connection con=null;
+		DbUtil dbUtil=new DbUtil();
 		
 		if (StringUtil.isEmpty(typeTxt)) {
 			JOptionPane.showMessageDialog(null, "图书类型名称不能为空");
@@ -141,7 +144,7 @@ public class BookTypeAdd extends JInternalFrame {
 			return;
 		}
 		try {
-			Connection con=DbUtil.getConn();
+			con=dbUtil.getConn();
 			if (bookTypeDao.add(con, bookType)==1) {
 				JOptionPane.showMessageDialog(null, "成功添加一条数据");
 				resetValue();
@@ -154,6 +157,13 @@ public class BookTypeAdd extends JInternalFrame {
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		}finally {
+			try {
+				dbUtil.closeCon(con);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		
 		

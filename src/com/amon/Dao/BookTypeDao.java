@@ -10,7 +10,7 @@ import com.amon.util.StringUtil;
 /**
 * @author Amon E-mail:248779716@qq.com
 * @version 创建时间：2018年3月29日 下午7:32:30
-* 图书类别DAO
+* 图书类别 连接数据库的封装方法 DAO
 */
 public class BookTypeDao {
 	
@@ -34,6 +34,7 @@ public class BookTypeDao {
 	
 	/**
 	 * 查询图书类别集合
+	 * 	当参数booktype为空时，返回的是所有数据！  即需要将所有数据显示时，可以传入一个空的bookType对象
 	 * @param con
 	 * @param bookType
 	 * @return	返回查询到的数据集合
@@ -41,8 +42,9 @@ public class BookTypeDao {
 	 */
 	public ResultSet list(Connection con,BookType bookType) throws Exception{
 		StringBuffer sBuffer=new StringBuffer("select * from t_booktype");
+		
 		if (StringUtil.isNotEmpty(bookType.getTypeName())) {
-			sBuffer.append("and bookTypeName like '%"+bookType.getTypeName()+"'%");
+			sBuffer.append(" and bookTypeName LIKE '%"+bookType.getTypeName()+"%'");
 		}
 		String sql=sBuffer.toString().replaceFirst("and", "where");	//将第一个“and”替换为“where”
 		PreparedStatement pstm=con.prepareStatement(sql);
