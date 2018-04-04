@@ -10,9 +10,27 @@ public class User {
 	private String passWord;
 	private int userType;
 	
+	public User(String userName) {
+		this.userName = userName;
+	}
 	
-	
-	
+
+
+	public User(int id, int userType) {
+		super();
+		this.id = id;
+		this.userType = userType;
+	}
+
+
+
+	public User(int id, String userName, String passWord) {
+		super();
+		this.id = id;
+		this.userName = userName;
+		this.passWord = passWord;
+	}
+
 	
 	
 	public User() {
@@ -23,6 +41,16 @@ public class User {
 		super();
 		this.userName = userName;
 		this.passWord = passWord;
+	}
+	public User(String userName, String passWord, int userType) {
+		super();
+		this.userName = userName;
+		this.passWord = passWord;
+		this.userType = userType;
+	}
+	
+	public User(int userId) {
+		this.id=userId;
 	}
 	public String getPassWord() {
 		return passWord;

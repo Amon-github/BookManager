@@ -5,6 +5,11 @@ package com.amon.model;
 * 图书类别实体
 */
 public class BookType {
+	public BookType(int id) {
+		super();
+		this.id = id;
+	}
+
 	private int  id;//类型编号
 	private String typeName;//类别名称
 	private String typeDesc;//备注
@@ -42,6 +47,11 @@ public class BookType {
 	}
 	public void setTypeDesc(String typeDesc) {
 		this.typeDesc = typeDesc;
+	}
+
+	@Override
+	public String toString() {
+		return getTypeName();
 	}
 	
 	

@@ -31,4 +31,20 @@ public class StringUtil {
 		}
 	}
 	
+	/**
+	 * 判断是不是数字
+	 * @param str
+	 * @return
+	 */
+	public static boolean isNum(String str){
+	    for(int i=str.length();--i>=0;){
+	        int chr=str.charAt(i);
+	        if(chr<48 || chr>57)
+	            return false;
+	    }
+			return true;
+	}
+	
+	
+	
 }
