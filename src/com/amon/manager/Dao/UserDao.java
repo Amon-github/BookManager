@@ -23,7 +23,7 @@ public class UserDao {
 	 * @return
 	 * @throws SQLException
 	 */
-	public User login(Connection con, String userName, String passWord) throws SQLException {
+	public User login(Connection con, String userName, String passWord,int type) throws SQLException {
 		User resultUser = null;
 		String sql = "select * from t_user where userName=? and passWord =?";
 		PreparedStatement pres = con.prepareStatement(sql);
@@ -59,9 +59,23 @@ public class UserDao {
 		while (rs.next()) {
 			pwd = rs.getString("password");
 		}
-		System.out.println("UserName:" + user.getUserName() + "PassWord:" + user.getPassWord());
-		System.out.println("sql:" + pres.toString());
 		return pwd;
+	}
+	/**
+	 * 用ID查找用户2
+	 * 
+	 * @param con
+	 * @param userName
+	 * @param passWord
+	 * @return
+	 * @throws SQLException
+	 */
+	public ResultSet selectUserByID2(Connection con, User user) throws SQLException {
+		String sql = "select * from t_user where id=?";
+		PreparedStatement pres = con.prepareStatement(sql);
+		pres.setInt(1, user.getId()); // 给第一个？赋值
+		ResultSet rs = pres.executeQuery(); // 查询数据库，获得返回值
+		return rs;
 	}
 
 	/**
@@ -107,8 +121,6 @@ public class UserDao {
 		while (rs.next()) {
 			pwd = rs.getString("password");
 		}
-		System.out.println("UserName:" + user.getUserName() + "PassWord:" + user.getPassWord());
-		System.out.println("sql:" + pres.toString());
 		return pwd;
 	}
 
@@ -129,7 +141,6 @@ public class UserDao {
 		}
 		String sql = sBuffer.toString().replaceFirst("and", "where"); // 将第一个“and”替换为“where”
 		PreparedStatement pres = con.prepareStatement(sql);
-		System.out.println("DAO-----"+sql+"  name: "+user.getUserName());
 		ResultSet rs = pres.executeQuery(); // 查询数据库，获得返回值
 		return rs;
 	}
@@ -174,7 +185,6 @@ public class UserDao {
 			ptsm.setString(2, user.getPassWord());
 			ptsm.setInt(3, user.getId());
 			result = ptsm.executeUpdate();
-			System.out.println("UserDao106---sql:" + ptsm.toString());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -196,7 +206,6 @@ public class UserDao {
 			PreparedStatement ptsm;
 			ptsm = con.prepareStatement(sql);
 			ptsm.setInt(1, user.getId());
-			System.out.println("DAO中的用户ID" + user.getId());
 			result = ptsm.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -51,6 +51,7 @@ public class DbUtil {
 			    stat.executeUpdate("CREATE TABLE if not exists `t_book` (`id` int(11) NOT NULL AUTO_INCREMENT,`bookName` varchar(255) DEFAULT NULL,`author` varchar(255) DEFAULT NULL,`sex` varchar(255) DEFAULT NULL,`price` decimal(10,0) DEFAULT NULL,`bookTypeId` int(11) DEFAULT NULL,`bookDesc` varchar(255) DEFAULT NULL,PRIMARY KEY (`id`),KEY `bookTypeid` (`bookTypeId`)) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8"); 
 			    stat.executeUpdate("CREATE TABLE if not exists `t_booktype` (`id` int(11) NOT NULL AUTO_INCREMENT,`bookTypeName` varchar(255) DEFAULT NULL,`bookTypeDesc` varchar(255) DEFAULT NULL,PRIMARY KEY (`id`)) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8");
 			    stat.executeUpdate("CREATE TABLE if not exists `t_user` (`id` int(11) NOT NULL AUTO_INCREMENT,`userName` varchar(25) DEFAULT NULL,`password` varchar(25) DEFAULT NULL,`usertype` int(11) DEFAULT '2',PRIMARY KEY (`id`)) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8");
+			    stat.executeUpdate("CREATE TABLE if not exists `t_lend` (  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '该条数据id',  `bookid` int(11) DEFAULT NULL COMMENT '图书id',  `cardid` varchar(11) DEFAULT NULL COMMENT '借书卡账号',  `borrowdate` varchar(255) DEFAULT NULL COMMENT '借书日期',  `lendcount` int(11) DEFAULT NULL,  `managerid` int(11) DEFAULT NULL COMMENT '处理者账号(管理员账号)',  `returndate` varchar(255) DEFAULT NULL COMMENT '还书日期',  PRIMARY KEY (`id`)) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8");
 			    
 			    UserDao userDao=new UserDao();
 			    User user=new User(1);
@@ -95,7 +96,7 @@ public class DbUtil {
 	 * @param con
 	 * @throws SQLException
 	 */
-	public void closeCon(Connection con) throws SQLException{
+	public static void closeCon(Connection con) throws SQLException{
 		if (con!=null) {
 			con.close();
 		}

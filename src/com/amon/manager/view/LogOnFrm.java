@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.amon.generalUser.view.UserHomeViewGeneral;
 import com.amon.manager.Dao.UserDao;
+import com.amon.manager.Intview.LogInFrm;
 import com.amon.model.User;
 import com.amon.util.DbUtil;
 import com.amon.util.StringUtil;
@@ -99,7 +100,7 @@ public class LogOnFrm extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				LogInFrm logInFrm=new LogInFrm();
+				LogInFrm logInFrm=new LogInFrm(2);
 				logInFrm.setVisible(true);
 			}
 		});
@@ -178,8 +179,8 @@ public class LogOnFrm extends JFrame {
 		 }
 		try {
 			Connection con=dbUtil.getConn();
-			User currentUser=userDao.login(con, userName,passWord);
-			User newUser=userDao.login(con, userName, passWord); 	//获取刚注册到的用户对象
+			User currentUser=userDao.login(con, userName,passWord,2);
+			User newUser=userDao.login(con, userName, passWord,2); 	//获取刚注册到的用户对象
 			int newUserID=newUser.getId();
 			if (currentUser!=null) {
 				dispose();//窗体销毁

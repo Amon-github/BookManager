@@ -21,7 +21,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.amon.generalUser.view.UserHomeViewGeneral;
 import com.amon.manager.Dao.UserDao;
-import com.amon.manager.view.LogInFrm;
+import com.amon.manager.Intview.LogInFrm;
 import com.amon.model.User;
 import com.amon.util.DbUtil;
 import com.amon.util.StringUtil;
@@ -31,7 +31,7 @@ import java.awt.Color;
 /**
 * @author Amon E-mail:248779716@qq.com
 * @version 创建时间：2018年3月28日 下午7:06:46
-* 登录界面
+* 普通用户修改密码
 */
 public class UpdateUserInfoInFrm extends JFrame {
 
@@ -44,21 +44,6 @@ public class UpdateUserInfoInFrm extends JFrame {
 	private JTextField newUserName;
 	
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UpdateUserInfoInFrm frame = new UpdateUserInfoInFrm(0);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -103,17 +88,26 @@ public class UpdateUserInfoInFrm extends JFrame {
 		
 		newUserName = new JTextField();
 		newUserName.setColumns(10);
+		
+		JButton cancleBtn = new JButton("\u53D6 \u6D88");
+		cancleBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(113, Short.MAX_VALUE)
+					.addContainerGap(129, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(btnNewButton)
-							.addGap(40)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(button)
-							.addGap(33))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(cancleBtn)
+							.addPreferredGap(ComponentPlacement.RELATED))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 								.addComponent(label_1)
@@ -148,8 +142,9 @@ public class UpdateUserInfoInFrm extends JFrame {
 						.addComponent(label_1))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnNewButton)
-						.addComponent(button))
+						.addComponent(button)
+						.addComponent(cancleBtn)
+						.addComponent(btnNewButton))
 					.addContainerGap(60, Short.MAX_VALUE))
 		);
 		

@@ -6,6 +6,17 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.amon.manager.Intview.AboutMeIntFrm;
+import com.amon.manager.Intview.BookAddIntFrm;
+import com.amon.manager.Intview.BookManagerIntFrm;
+import com.amon.manager.Intview.CurrentManagerID;
+import com.amon.manager.Intview.LogInFrm;
+import com.amon.manager.Intview.ManageOtherUser;
+import com.amon.manager.Intview.TypeAddIntFrm;
+import com.amon.manager.Intview.TypeManagerIntFrm;
+import com.amon.manager.Intview.UpdateManagerInfo;
+
 import javax.swing.JPopupMenu;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
@@ -32,9 +43,9 @@ import javax.swing.JTextPane;
 public class ManagerHomeView extends JFrame {
 
 	private JPanel contentPane;
-	private JDesktopPane table=null;
+	static JDesktopPane table=null;
 	private int userType;	//用户类型（图书管理员 还是普通用户）
-
+	int userid;
 	/**
 	 * Launch the application.
 	 */
@@ -55,6 +66,8 @@ public class ManagerHomeView extends JFrame {
 	 * Create the frame.
 	 */
 	public ManagerHomeView(int userid) {
+		this.userid=userid;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		
@@ -132,17 +145,28 @@ public class ManagerHomeView extends JFrame {
 		menu_2.setFont(new Font("Dialog", Font.PLAIN, 21));
 		mnNewMenu.add(menu_2);
 		
-		JMenuItem menuItem_6 = new JMenuItem("\u7BA1\u7406\u5458\u8D26\u6237");
+		JMenuItem menuItem_6 = new JMenuItem("\u7BA1\u7406\u672C\u8D26\u6237");
 		menuItem_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UpdateManagerInfo updateManagerInfo=new UpdateManagerInfo(userid);
 				updateManagerInfo.setVisible(true);
 			}
 		});
+		
+		JMenuItem menuItem_9 = new JMenuItem("\u6DFB\u52A0\u7BA1\u7406\u5458");
+		menuItem_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				LogInFrm logInFrm=new LogInFrm(1);
+				logInFrm.setVisible(true);
+			}
+		});
+		menuItem_9.setFont(new Font("Dialog", Font.PLAIN, 21));
+		menu_2.add(menuItem_9);
 		menuItem_6.setFont(new Font("Dialog", Font.PLAIN, 21));
 		menu_2.add(menuItem_6);
 		
-		JMenuItem menuItem_7 = new JMenuItem("\u666E\u901A\u7528\u6237");
+		JMenuItem menuItem_7 = new JMenuItem("\u7BA1\u7406\u666E\u901A\u7528\u6237");
 		menuItem_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ManageOtherUser manageOtherUser=new ManageOtherUser();
@@ -153,6 +177,32 @@ public class ManagerHomeView extends JFrame {
 		menuItem_7.setFont(new Font("Dialog", Font.PLAIN, 21));
 		menu_2.add(menuItem_7);
 		mnNewMenu.add(menuItem_5);
+		
+		JMenu menu_3 = new JMenu("\u56FE\u4E66\u501F\u552E");
+		menu_3.setFont(new Font("Dialog", Font.PLAIN, 21));
+		menuBar.add(menu_3);
+		
+		JMenuItem menuItem_10 = new JMenuItem("\u56FE\u4E66\u501F\u552E");
+		menuItem_10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ChooseBookIntFrm chooseBookIntFrm=new ChooseBookIntFrm(userid);
+				chooseBookIntFrm.setVisible(true);
+				table.add(chooseBookIntFrm);
+			}
+		});
+		menuItem_10.setFont(new Font("Dialog", Font.PLAIN, 21));
+		menu_3.add(menuItem_10);
+		
+		JMenuItem menuItem_11 = new JMenuItem("\u501F\u4E66\u8BB0\u5F55");
+		menuItem_11.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GetlendInfo getlendInfo=new GetlendInfo(userid);
+				getlendInfo.setVisible(true);
+				table.add(getlendInfo);
+			}
+		});
+		menuItem_11.setFont(new Font("Dialog", Font.PLAIN, 21));
+		menu_3.add(menuItem_11);
 		
 		JMenu menu = new JMenu("\u5173\u4E8E\u6211\u4EEC");
 		menu.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 21));
@@ -168,6 +218,17 @@ public class ManagerHomeView extends JFrame {
 			}
 		});
 		menu.add(menuItem_2);
+		
+		JMenuItem menuItem_8 = new JMenuItem("\u5F53\u524D\u8D26\u53F7");
+		menuItem_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CurrentManagerID currentManagerID=new CurrentManagerID(userid);
+				currentManagerID.setVisible(true);
+				table.add(currentManagerID);
+			}
+		});
+		menuItem_8.setFont(new Font("Dialog", Font.PLAIN, 21));
+		menu.add(menuItem_8);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));

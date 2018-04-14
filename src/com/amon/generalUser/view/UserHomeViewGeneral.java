@@ -7,14 +7,21 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.amon.manager.view.AboutMeIntFrm;
-import com.amon.manager.view.BookAddIntFrm;
-import com.amon.manager.view.BookManagerIntFrm;
+import com.amon.manager.Dao.UserDao;
+import com.amon.manager.Intview.AboutMeIntFrm;
+import com.amon.manager.Intview.BookAddIntFrm;
+import com.amon.manager.Intview.BookManagerIntFrm;
+import com.amon.model.User;
+import com.amon.util.DbUtil;
 
 import javax.swing.JPopupMenu;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javax.swing.JMenuBar;
 import javax.swing.JButton;
 import javax.swing.JTree;
@@ -27,6 +34,7 @@ import javax.swing.JMenu;
 import javax.swing.JDesktopPane;
 import java.awt.SystemColor;
 import java.awt.Font;
+import javax.swing.JLabel;
 
 /**
 * @author Amon E-mail:248779716@qq.com
@@ -39,21 +47,7 @@ public class UserHomeViewGeneral extends JFrame {
 	private JDesktopPane table=null;
 	private int userID;	//用户ID
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UserHomeViewGeneral frame = new UserHomeViewGeneral(0);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
@@ -86,9 +80,9 @@ public class UserHomeViewGeneral extends JFrame {
 		menuItem_4.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 21));
 		menuItem_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BookManagerIntFrmGeneral bookManagerIntFrmGeneral=new BookManagerIntFrmGeneral();
-				bookManagerIntFrmGeneral.setVisible(true);
-				table.add(bookManagerIntFrmGeneral);
+				SearchBookIntFrmGener bookManagerIntFrmGener=new SearchBookIntFrmGener();
+				bookManagerIntFrmGener.setVisible(true);
+				table.add(bookManagerIntFrmGener);
 			}
 		});
 		
@@ -103,7 +97,7 @@ public class UserHomeViewGeneral extends JFrame {
 		mnNewMenu.add(menuItem);
 		mnNewMenu.add(menuItem_5);
 		
-		JMenu menu = new JMenu("\u5173\u4E8E\u6211\u4EEC");
+		JMenu menu = new JMenu("\u66F4\u591A");
 		menu.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 21));
 		menuBar.add(menu);
 		
@@ -117,6 +111,17 @@ public class UserHomeViewGeneral extends JFrame {
 			}
 		});
 		menu.add(menuItem_2);
+		
+		JMenuItem mntmid = new JMenuItem("\u672C\u673AID");
+		mntmid.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CurrentGengralID currentID=new CurrentGengralID(userID);
+				currentID.setVisible(true);
+				table.add(currentID); 
+			}
+		});
+		mntmid.setFont(new Font("Dialog", Font.PLAIN, 21));
+		menu.add(mntmid);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -127,6 +132,7 @@ public class UserHomeViewGeneral extends JFrame {
 		contentPane.add(table, BorderLayout.CENTER);
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);	//设置窗体刚弹出时最大化
 	}
+
 
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
