@@ -10,12 +10,12 @@ import java.sql.SQLException;
 
 /**
  * @author Amon E-mail:248779716@qq.com
- * @version ´´½¨Ê±¼ä£º2018Äê3ÔÂ29ÈÕ ÏÂÎç11:06:46 ¡°Í¼Êé¡±µÄÊı¾İ¿âÁ¬½ÓÀà
+ * @version åˆ›å»ºæ—¶é—´ï¼š2018å¹´3æœˆ29æ—¥ ä¸‹åˆ11:06:46 â€œå›¾ä¹¦â€çš„æ•°æ®åº“è¿æ¥ç±»
  */
 public class BookDao {
 
 	/**
-	 * Ìí¼ÓÍ¼Êé·½·¨
+	 * æ·»åŠ å›¾ä¹¦æ–¹æ³•
 	 * 
 	 * @throws SQLException
 	 * 
@@ -33,13 +33,12 @@ public class BookDao {
 		pstm.setInt(8, book.getStocks());
 		pstm.setInt(9, book.getBookTypeId());
 		pstm.setString(10, book.getBookDesc());
-		System.out.println("Ìí¼ÓÍ¼Êé·½·¨--36--"+pstm.toString());
 		int result = pstm.executeUpdate();
 		return result;
 	}
 
 	/**
-	 * ²éÕÒÍ¼Êé
+	 * æŸ¥æ‰¾å›¾ä¹¦
 	 * 
 	 * @param con
 	 * @param 0
@@ -59,12 +58,12 @@ public class BookDao {
 		}
 		String sql = sBuffer.toString();
 		PreparedStatement pstm = con.prepareStatement(sql);
-		ResultSet resultSet = pstm.executeQuery(); // »ñµÃ²éÑ¯µ½µÄ½á¹û¼¯
+		ResultSet resultSet = pstm.executeQuery(); // è·å¾—æŸ¥è¯¢åˆ°çš„ç»“æœé›†
 		return resultSet;
 	}
 
 	/**
-	 * ÓÃÍ¼ÊéID ²éÑ¯Í¼ÊéĞÅÏ¢
+	 * ç”¨å›¾ä¹¦ID æŸ¥è¯¢å›¾ä¹¦ä¿¡æ¯
 	 * 
 	 * @param con
 	 * @param book
@@ -80,7 +79,7 @@ public class BookDao {
 	}
 
 	/**
-	 * Í¼ÊéĞÅÏ¢¸üĞÂ
+	 * å›¾ä¹¦ä¿¡æ¯æ›´æ–°
 	 * 
 	 * @param con
 	 * @param 0
@@ -106,7 +105,7 @@ public class BookDao {
 	}
 
 	/**
-	 * ĞŞ¸ÄÍ¼Êé¿â´æ
+	 * ä¿®æ”¹å›¾ä¹¦åº“å­˜
 	 * 
 	 * @param con
 	 * @param book
@@ -129,7 +128,7 @@ public class BookDao {
 	}
 
 	/**
-	 * É¾³ıÍ¼ÊéĞÅÏ¢
+	 * åˆ é™¤å›¾ä¹¦ä¿¡æ¯
 	 * 
 	 * @param con
 	 * @param id
