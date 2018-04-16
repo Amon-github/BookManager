@@ -33,7 +33,7 @@ public class BookDao {
 		pstm.setInt(8, book.getStocks());
 		pstm.setInt(9, book.getBookTypeId());
 		pstm.setString(10, book.getBookDesc());
-
+		System.out.println("添加图书方法--36--"+pstm.toString());
 		int result = pstm.executeUpdate();
 		return result;
 	}
