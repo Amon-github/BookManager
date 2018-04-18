@@ -16,6 +16,7 @@ public class BookManagerMain {
 
 	public static void main(String[] args) {
 		new DbUtil().buildUpDb();	//创建数据库和数据表
+		FileUtil.createFile();	//创建图书存放地址
 		//打开登录界面
 		LogOnFrm logOnFrm=new LogOnFrm();
 		logOnFrm.setVisible(true);

@@ -6,17 +6,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import com.amon.manager.Intview.AboutMeIntFrm;
-import com.amon.manager.Intview.BookAddIntFrm;
-import com.amon.manager.Intview.BookManagerIntFrm;
-import com.amon.manager.Intview.CurrentManagerID;
-import com.amon.manager.Intview.LogInFrm;
-import com.amon.manager.Intview.ManageOtherUser;
-import com.amon.manager.Intview.TypeAddIntFrm;
-import com.amon.manager.Intview.TypeManagerIntFrm;
-import com.amon.manager.Intview.UpdateManagerInfo;
-
 import javax.swing.JPopupMenu;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;

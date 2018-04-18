@@ -17,9 +17,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import com.amon.Dao.UserDao;
 import com.amon.generalUser.view.UserHomeViewGeneral;
-import com.amon.manager.Dao.UserDao;
-import com.amon.manager.Intview.LogInFrm;
 import com.amon.model.User;
 import com.amon.util.DbUtil;
 import com.amon.util.StringUtil;

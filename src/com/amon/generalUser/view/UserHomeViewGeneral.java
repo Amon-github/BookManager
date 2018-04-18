@@ -7,10 +7,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.amon.manager.Dao.UserDao;
-import com.amon.manager.Intview.AboutMeIntFrm;
-import com.amon.manager.Intview.BookAddIntFrm;
-import com.amon.manager.Intview.BookManagerIntFrm;
+import com.amon.Dao.UserDao;
+import com.amon.manager.view.AboutMeIntFrm;
+import com.amon.manager.view.BookAddIntFrm;
+import com.amon.manager.view.BookManagerIntFrm;
 import com.amon.model.User;
 import com.amon.util.DbUtil;
 
@@ -44,7 +44,7 @@ import javax.swing.JLabel;
 public class UserHomeViewGeneral extends JFrame {
 
 	private JPanel contentPane;
-	private JDesktopPane table=null;
+	public static JDesktopPane table=null;
 	private int userID;	//ÓÃ»§ID
 
 

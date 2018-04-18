@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
-import com.amon.manager.Dao.UserDao;
+import com.amon.Dao.UserDao;
 import com.amon.model.User;
 
 /**
